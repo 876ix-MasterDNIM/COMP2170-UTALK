@@ -1,0 +1,16 @@
+{
+    "name": "Sports",
+    "iconURL": "../uploads/black-and-white-girl-1920x1080-wallpaper-16240.jpg",
+    "threads": [{
+      "topic": "Some sheet",
+        "description": "Everything football related on campus.",
+        "moderator": "d_allen",
+        "posts": [{
+            "author": "d_allen",
+            "content": "My first post",
+            "edit": false
+        }],
+        "created": new Date(),
+        "iconurl": "../images/forum.png"
+    }],
+}

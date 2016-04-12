@@ -2,186 +2,166 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>U-Talk</title>
-  <link rel="stylesheet" href="../styles/bootstrap.min.css">
-  <script type="text/javascript" src="../scripts/jquery.min.js"></script>
-  <script type="text/javascript" src="../scripts/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <title>U-Talk</title>
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/nav_footer.css">
+    <script type="text/javascript" src="../scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="../scripts/bootstrap.min.js"></script>
 </head>
 
 <body>
-  <!--NAVIGATION BAR-->
-  <nav class="nav navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/index">U-Talk<sup>&reg;</sup></a>
-      </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="" data-toggle="modal" data-target="#login">Login</a></li>
-          <li><a href="" data-toggle="modal" data-target="#register">Register</a></li>
-          <li><a href="" data-toggle="modal" data-target="#contact">Contact Us</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <!--END NAVIGATION BAR-->
-
-  <!--CONTENT-->
-  <div class="jumbotron">
-    <div class="container centerfy">
-      <h2>Welcome to U-Talk, UWI's Forum</h2>
-      <img src="/images/forum.png" alt="Logo" />
-    </div>
-  </div>
-  <!--END CONTENT-->
-
-  <!--REGISTER MODAL-->
-  <div id="register" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title" id="myModalLabel">Register For A U-Talk Acoount</h4>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-xs-6">
-              <div style="margin: 0 auto;" class="well">
-                <form enctype="multipart/form-data" id="register" method="POST" action="/register" novalidate="novalidate">
-                  <div class="form-group">
-                    <label for="email" class="control-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required title="Please enter you username" placeholder="example@gmail.com">
-                    <span class="help-block"></span>
-                  </div>
-                  <div class="form-group">
-                    <label for="username" class="control-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" required title="Please enter you username" placeholder="desired username">
-                    <span class="help-block"></span>
-                  </div>
-                  <div class="form-group">
-                    <label for="password" class="control-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required title="Please enter your password">
-                    <span class="help-block"></span>
-                  </div>
-                  <div class="form-group">
-                    <label for="cpassword" class="control-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="cpassword" name="cpassword" value required>
-                    <span class="help-block"></span>
-                  </div>
-                  <div class="form-group">
-                    <input type="file" class="form-control filestyle" id="img" name="img" value required>
-                    <span class="help-block">Profile Picture</span>
-                  </div>
-                  <div id="registerError" class="alert alert-error hide"></div>
-                  <button type="submit" class="btn btn-success btn-block">Register</button>
-                </form>
-              </div>
+    <!--NAVIGATION BAR-->
+    <nav class="nav navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index">U-Talk<sup>&reg;</sup></a>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--END REGISTER MODAL-->
-
-
-  <!--CONTACT MODAL-->
-  <div id="contact" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title" id="myModalLabel">Contact The Creators Of This Website</h4>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-xs-6">
-              <div style="margin: 0 auto;" class="well">
-                <a href="#">Dayton Allen</a>
-                <hr>
-                <a href="#">Alex Leslie</a>
-                <hr>
-                <a href="#">Andre Vidal</a>
-                <hr>
-                <a href="#">Jhenai Dixon</a>
-                <hr>
-                <a href="#">Jason Gooden</a>
-              </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="" data-toggle="modal" data-target="#login">Login</a></li>
+                    <li><a href="" data-toggle="modal" data-target="#register">Register</a></li>
+                    <li><a href="" data-toggle="modal" data-target="#contact">Contact Us</a></li>
+                </ul>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <!--END CONTACT MODAL-->
+    </nav>
+    <!--END NAVIGATION BAR-->
 
-  <!--LOGIN MODAL-->
-  <div id="login" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title" id="myModalLabel">Login To Your U-Talk Account</h4>
+    <!--CONTENT-->
+    <div class="jumbotron">
+        <div class="container centerfy">
+            <h2>Welcome to U-Talk, UWI's Forum</h2>
+            <img src="/images/forum.png" alt="Logo" />
         </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-xs-6">
-              <div style="margin: 0 auto;" class="well">
-                <form id="loginForm" method="POST" action="/login" novalidate="novalidate">
-                  <div class="form-group">
-                    <label for="username" class="control-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you username" placeholder="Username">
-                    <span class="help-block"></span>
-                  </div>
-                  <div class="form-group">
-                    <label for="password" class="control-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" value="" required="" title="Please enter your password" placeholder="password">
-                    <span class="help-block"></span>
-                  </div>
-                  <div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="remember" id="remember"> Remember login
-                    </label>
-                    <p class="help-block">(if this is a private computer)</p>
-                  </div>
-                  <button type="submit" class="btn btn-success btn-block">Login</button>
-                </form>
-              </div>
+    </div>
+    <!--END CONTENT-->
+
+    <!--REGISTER MODAL-->
+    <div id="register" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Register For A U-Talk Acoount</h4>
+                </div>
+                <div class="modal-body">
+                    <form enctype="multipart/form-data" id="register" method="POST" action="/register" novalidate="novalidate">
+                        <div class="form-group">
+                            <label for="email" class="control-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required title="Please enter you username" placeholder="example@gmail.com">
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="control-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required title="Please enter you username" placeholder="desired username">
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="control-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required title="Please enter your password">
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="cpassword" class="control-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="cpassword" name="cpassword" value required>
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="file" class="form-control filestyle" id="img" name="img" value required>
+                            <span class="help-block">Profile Picture</span>
+                        </div>
+                        <div id="registerError" class="alert alert-error hide"></div>
+                        <button type="submit" class="btn btn-success btn-block">Register</button>
+                    </form>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-  <!--END LOGIN MODAL-->
+    <!--END REGISTER MODAL-->
+
+
+    <!--CONTACT MODAL-->
+    <div id="contact" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-center">Contact The Creators</h4>
+                </div>
+                <div class="modal-body">
+                    <a href="#">Dayton Allen</a>
+                    <hr>
+                    <a href="#">Alex Leslie</a>
+                    <hr>
+                    <a href="#">Andre Vidal</a>
+                    <hr>
+                    <a href="#">Jhenai Dixon</a>
+                    <hr>
+                    <a href="#">Jason Gooden</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END CONTACT MODAL-->
+
+    <!--LOGIN MODAL-->
+    <div id="login" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Login To Your U-Talk Account</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm" method="POST" action="/login" novalidate="novalidate">
+                        <div class="form-group">
+                            <label for="username" class="control-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you username" placeholder="Username">
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="control-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" value="" required="" title="Please enter your password" placeholder="password">
+                            <span class="help-block"></span>
+                        </div>
+                        <div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="remember" id="remember"> Remember login
+                            </label>
+                            <p class="help-block">(if this is a private computer)</p>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END LOGIN MODAL-->
 
 
 
-  <!--BAD INCLUDED STYLES-->
-  <style>
-    .centerfy img {
-      margin: 0 auto;
-    }
+    <!--BAD INCLUDED STYLES-->
+    <style>
+        .centerfy img {
+            margin: 0 auto;
+        }
 
-    .centerfy {
-      text-align: center;
-    }
-  </style>
-  <!--END BAD INCLUDED STYLES-->
+        .centerfy {
+            text-align: center;
+        }
+    </style>
+    <!--END BAD INCLUDED STYLES-->
 
-  <!--BAD INCLUDED JS-->
-  <script>
-  </script>
-  <!--END BAD INCLUDED JS-->
-  <script type="text/javascript" src="../scripts/bootstrap-filestyle.min.js"> </script>
+    <script type="text/javascript" src="../scripts/bootstrap-filestyle.min.js">
+    </script>
 </body>
 
 </html>

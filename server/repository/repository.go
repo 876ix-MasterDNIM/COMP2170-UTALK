@@ -2,8 +2,10 @@ package repository
 
 import (
 	"U-Talk/server"
+	"U-Talk/server/utilities/sessions"
 	"fmt"
 	"log"
+	"net/http"
 	"time"
 
 	"golang.org/x/crypto/bcrypt"
@@ -60,6 +62,35 @@ func (r Repository) StoreUser(user *datastructures.User) {
 	}
 }
 
+// AddThread adds a thread to db
+func (r Repository) AddThread(thread *datastructures.Thread, categoryName string, request *http.Request) {
+	session, _ := mgo.Dial(r.ipAddress)
+	defer session.Close()
+	session.SetMode(mgo.Monotonic, true)
+	collection := session.DB("u-talk").C("forum")
+	query := bson.M{"name": categoryName}
+	update := bson.M{"$push": bson.M{"threads": bson.M{"topic": thread.Topic(), "description": thread.Description(), "moderator": sessions.UserName(request), "posts": thread.Posts(), "created": thread.Created()}}}
+	err := collection.Update(query, update)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+// Threads returns the threads in a category
+func (r Repository) Threads(categoryName string) []DbThread {
+	session, _ := mgo.Dial(r.ipAddress)
+	defer session.Close()
+	session.SetMode(mgo.Monotonic, true)
+
+	category := DbCategory{}
+	collection := session.DB("u-talk").C("forum")
+	err := collection.Find(bson.M{"name": categoryName}).One(&category)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return category.Threads
+}
+
 // DbUser represents user object in database
 type DbUser struct {
 	ImageURL string
@@ -88,5 +119,7 @@ type DbPost struct {
 
 // DbCategory represents category object in database
 type DbCategory struct {
-	Thread []DbThread
+	Threads []DbThread
+	Name    string
+	IconURL string
 }
