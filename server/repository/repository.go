@@ -4,6 +4,7 @@ import (
 	"U-Talk/server"
 	"fmt"
 	"log"
+	"time"
 
 	"golang.org/x/crypto/bcrypt"
 
@@ -11,21 +12,18 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
-// DbUser represents user object in database
-type DbUser struct {
-	ImageURL string
-	Username string
-	Email    string
-	Password []byte
-	UserType string
-}
-
 // Repository facilitates database transactions
 type Repository struct {
 	dbName         string
 	collectionName string
 	ipAddress      string
 	port           string
+}
+
+// Repository constructor
+func (r *Repository) Repository(dbName string, collectionName string) {
+	r.dbName = dbName
+	r.collectionName = collectionName
 }
 
 // UserData fetches user data from database
@@ -60,11 +58,35 @@ func (r Repository) StoreUser(user *datastructures.User) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 }
 
-// Repository constructor
-func (r *Repository) Repository(dbName string, collectionName string) {
-	r.dbName = dbName
-	r.collectionName = collectionName
+// DbUser represents user object in database
+type DbUser struct {
+	ImageURL string
+	Username string
+	Email    string
+	Password []byte
+	UserType string
+}
+
+// DbThread represents thread object in database
+type DbThread struct {
+	Description string
+	Moderator   string
+	IconURL     string
+	Posts       []DbPost
+	Created     time.Time
+}
+
+// DbPost represents post object in database
+type DbPost struct {
+	Author  string
+	Content string
+	Edited  bool
+	Created time.Time
+}
+
+// DbCategory represents category object in database
+type DbCategory struct {
+	Thread []DbThread
 }

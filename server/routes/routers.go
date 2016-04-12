@@ -29,7 +29,7 @@ func RunServer() {
 	mux.HandleFunc("/index", index)
 	mux.HandleFunc("/register", register)
 	mux.HandleFunc("/login", login)
-	mux.HandleFunc("/logout", logout)
+	mux.HandleFunc("/threads", threads)
 	http.ListenAndServe(":3000", mux)
 }
 
@@ -88,4 +88,19 @@ func login(response http.ResponseWriter, request *http.Request) {
 func logout(response http.ResponseWriter, request *http.Request) {
 	sessions.ClearSession(response)
 	http.Redirect(response, request, "/", 302)
+}
+
+func threads(response http.ResponseWriter, request *http.Request) {
+	switch request.Method {
+	case "GET":
+		// userName := sessions.UserName(request)
+		// if userName != "" {
+		// 	htmlserver.ServeHTML("../../public/views/threads.html", response)
+		// } else {
+		// 	http.Redirect(response, request, "/index", 302)
+		// }
+		htmlserver.ServeHTML("../../public/views/threads.html", response)
+
+	}
+
 }
