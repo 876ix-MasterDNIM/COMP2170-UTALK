@@ -69,9 +69,10 @@ func (r Repository) AddThread(thread *datastructures.Thread, categoryName string
 	session.SetMode(mgo.Monotonic, true)
 	collection := session.DB("u-talk").C("forum")
 	query := bson.M{"name": categoryName}
-	update := bson.M{"$push": bson.M{"threads": bson.M{"topic": thread.Topic(), "description": thread.Description(), "moderator": sessions.UserName(request), "posts": thread.Posts(), "created": thread.Created()}}}
+	update := bson.M{"$push": bson.M{"threads": bson.M{"topic": thread.Topic(), "description": thread.Description(), "moderator": sessions.UserName(request), "posts": thread.Posts(), "created": thread.Created(), "iconurl": thread.IconURL()}}}
 	err := collection.Update(query, update)
 	if err != nil {
+		fmt.Println("Adding thread")
 		log.Fatal(err)
 	}
 }
@@ -102,6 +103,7 @@ type DbUser struct {
 
 // DbThread represents thread object in database
 type DbThread struct {
+	Topic       string
 	Description string
 	Moderator   string
 	IconURL     string
@@ -122,4 +124,9 @@ type DbCategory struct {
 	Threads []DbThread
 	Name    string
 	IconURL string
+}
+
+// TotalPosts total posts
+func (d DbThread) TotalPosts() int {
+	return len(d.Posts)
 }

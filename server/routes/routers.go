@@ -126,7 +126,7 @@ func threads(response http.ResponseWriter, request *http.Request) {
 		}
 		templateErr := tpl.Execute(response, data)
 		if templateErr != nil {
-			log.Fatal(err)
+			fmt.Fprintln(os.Stderr, err)
 		}
 
 	case post:
@@ -149,7 +149,7 @@ func threads(response http.ResponseWriter, request *http.Request) {
 		topic := request.FormValue("topic")
 		categoryName := request.FormValue("category")
 		thread := datastructures.Thread{}
-		thread.Thread(desc, sessions.UserName(request), handler.Filename, topic)
+		thread.Thread(desc, sessions.UserName(request), "../uploads/"+handler.Filename, topic)
 		db.AddThread(&thread, categoryName, request)
 	}
 

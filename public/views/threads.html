@@ -17,23 +17,23 @@
         <h2>Threads [{{.Category}}]</h2>
     </div>
     <div class="container-fluid">
+        {{ range $index, $value := .Threads }}
         <div class="media jumbotron" style="padding: 10px;">
             <div class="media-left media-middle">
-                <img class="media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
+                <img class="media-object" style="width: 74px; height: 74px;" src="{{.IconURL}}" alt="image of poster">
             </div>
-            {{ range $index, $value := .Threads }}
             <div class="media-body">
-                <h4 class="media-heading">Topic: Uwi Carnival</h4>
-                <small>Description: {{$value.Description}}Everything Uwi Carnival Related</small>
+                <h5 class="media-heading">Topic: {{$value.Topic}}</h5>
+                <small>Description: {{$value.Description}}</small>
                 <br>
-                <small>Created By: {{$value.Moderator}}xxx_kingSHIT</small>
+                <small>Created By: {{$value.Moderator}}</small>
                 <br>
-                <small>Created On: {{$value.Created}}April 10, 2016</small>
+                <small>Created On: {{$value.Created}}</small>
                 <br>
                 <small>Total Posts: <span class="badge">{{$value.TotalPosts}}</span></small>
             </div>
-            {{ end }}
         </div>
+        {{ end }}
 
         <p></p>
     </div>
@@ -66,20 +66,20 @@
                 </div>
                 <div class="modal-body">
                     <form enctype="multipart/form-data" id="threadform" method="POST" action="/threads" novalidate="novalidate">
-                      <div class="form-group">
-                          <label for="username" class="control-label">Topic</label>
-                          <input type="text" class="form-control" id="topic" name="topic" value="" required" placeholder="Thread topic.">
-                      </div>
                         <div class="form-group">
-                            <label for="desc" class="control-label">Description</label>
+                            <label for="username" class="control-label">Topic</label>
+                            <input type="text" class="form-control" id="topic" name="topic" value="" required placeholder="Thread topic. ">
+                        </div>
+                        <div class="form-group ">
+                            <label for="desc" class="control-label ">Description</label>
                             <textarea style="resize: none;" type="text" class="form-control" id="desc" name="desc" placeholder="Description of what Thread is about."></textarea>
                         </div>
                         <div class="form-group">
                             <input type="file" class="form-control filestyle" id="img" name="img" value required>
-                            <span class="help-block">Thread Icon</span>
+                            <span class="help-block ">Thread Icon</span>
                         </div>
-                        <input type="text" hidden value="{{.Category}}" name="category"/>
-                        <button type="submit" class="btn btn-success btn-block">Create Thread</button>
+                            <input type="text" hidden value="{{.Category}}" id="category" name="category">
+                        <button type="submit " class="btn btn-success btn-block ">Create Thread</button>
                     </form>
                 </div>
             </div>
@@ -88,15 +88,15 @@
     <!--END ADDTHREAD MODAL-->
 
     <!--FOOTER-->
-    <footer class="footer navbar-fixed-bottom">
-        <div class="container-fluid">
-            <a href="" data-toggle="modal" data-target="#addthread" class="btn btn-success btn-block">Add Thread</a>
+    <footer class="footer navbar-fixed-bottom ">
+        <div class="container-fluid ">
+            <a href="" data-toggle="modal" data-target="#addthread" class="btn btn-success btn-block ">Add Thread</a>
         </div>
     </footer>
     <!--END FOOTER-->
-    <script type="text/javascript" src="../scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="../scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../scripts/bootstrap-filestyle.min.js">
+    <script type="text/javascript " src="../scripts/jquery.min.js "></script>
+    <script type="text/javascript " src="../scripts/bootstrap.min.js "></script>
+    <script type="text/javascript " src="../scripts/bootstrap-filestyle.min.js ">
     </script>
 </body>
 
