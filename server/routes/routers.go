@@ -98,7 +98,22 @@ func logout(response http.ResponseWriter, request *http.Request) {
 }
 
 func categories(response http.ResponseWriter, request *http.Request) {
-	htmlserver.ServeHTML("../../public/views/categories.html", response)
+	switch request.Method {
+	case get:
+		data := struct {
+			Categories []repository.DbCategory
+		}{
+			db.Categories(),
+		}
+		tpl, err := template.ParseFiles("../../public/views/categories.html")
+		if err != nil {
+			log.Fatal(err)
+		}
+		templateErr := tpl.Execute(response, data)
+		if templateErr != nil {
+			fmt.Fprintln(os.Stderr, err)
+		}
+	}
 }
 
 func threads(response http.ResponseWriter, request *http.Request) {
@@ -158,6 +173,37 @@ func threads(response http.ResponseWriter, request *http.Request) {
 func posts(response http.ResponseWriter, request *http.Request) {
 	switch request.Method {
 	case get:
-		htmlserver.ServeHTML("../../public/views/posts.html", response)
+		topic := request.FormValue("topic")
+		categoryName := request.FormValue("category")
+		posts, description := db.Posts(categoryName, topic)
+		fmt.Println(description)
+		data := struct {
+			Category    string
+			Topic       string
+			Description string
+			Posts       []repository.DbPost
+		}{
+			categoryName,
+			topic,
+			description,
+			posts,
+		}
+		tpl, err := template.ParseFiles("../../public/views/posts.html")
+		if err != nil {
+			log.Fatal(err)
+		}
+		templateErr := tpl.Execute(response, data)
+		if templateErr != nil {
+			fmt.Fprintln(os.Stderr, err)
+		}
+	case post:
+		categoryName := request.FormValue("category")
+		content := request.FormValue("content")
+		topic := request.FormValue("topic")
+		fmt.Println(topic)
+		fmt.Println(categoryName)
+		post := datastructures.Post{}
+		post.Post(content, sessions.UserName(request))
+		db.AddPost(&post, topic, categoryName, request)
 	}
 }

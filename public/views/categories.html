@@ -17,117 +17,18 @@
         <h2>Categories</h2>
     </div>
     <div class="container-fluid">
+        {{ range $index, $value := .Categories }}
         <div class="media jumbotron" style="padding: 10px;">
             <div class="media-left media-middle">
-                <img class="media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
+                <img class="media-object" style="width: 74px; height: 74px;" src="{{ $value.IconURL }}" alt="image of poster">
             </div>
             <div class="media-body">
                 <br>
-                <a href="/threads?category=Sports" class="media-heading">Sports</a>
+                <a href="/threads?category={{ $value.Name }}" class="media-heading">{{ $value.Name }}</a>
             </div>
         </div>
+        {{ end }}
     </div>
-
-    <div class="container-fluid">
-        <div class="media jumbotron" style="padding: 10px;">
-            <div class="media-left media-middle">
-                <img class="media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <a href="/threads?category=Sports" class="media-heading">Sports</a>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="media jumbotron" style="padding: 10px;">
-            <div class="media-left media-middle">
-                <img class="media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <a href="/threads?category=Sports" class="media-heading">Sports</a>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="media jumbotron" style="padding: 10px;">
-            <div class="media-left media-middle">
-                <img class="media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <a href="/threads?category=Sports" class="media-heading">Sports</a>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="media jumbotron" style="padding: 10px;">
-            <div class="media-left media-middle">
-                <img class="media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <a href="/threads?category=Sports" class="media-heading">Sports</a>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="media jumbotron" style="padding: 10px;">
-            <div class="media-left media-middle">
-                <img class="media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <a href="/threads?category=Sports" class="media-heading">Sports</a>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="media jumbotron" style="padding: 10px;">
-            <div class="media-left media-middle">
-                <img class="media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <a href="/threads?category=Sports" class="media-heading">Sports</a>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="media jumbotron" style="padding: 10px;">
-            <div class="media-left media-middle">
-                <img class="media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <a href="/threads?category=Sports" class="media-heading">Sports</a>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="media jumbotron" style="padding: 10px;">
-            <div class="media-left media-middle">
-                <img class="media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <a href="/threads?category=Sports" class="media-heading">Sports</a>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="media jumbotron" style="padding: 10px;">
-            <div class="media-left media-middle">
-                <img class="media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <a href="/threads?category=Sports" class="media-heading">Sports</a>
-            </div>
-        </div>
-    </div>
-
 
     <p></p>
     </div>

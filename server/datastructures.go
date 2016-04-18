@@ -53,6 +53,14 @@ type Post struct {
 	created time.Time
 }
 
+// Post constructoor
+func (p *Post) Post(content string, author string) {
+	p.author = author
+	p.content = content
+	p.edited = false
+	p.created = time.Now()
+}
+
 // Author returns the name of the author of the post
 func (p Post) Author() string {
 	return p.author

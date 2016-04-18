@@ -6,6 +6,7 @@
     <title>U-Talk</title>
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/nav_footer.css">
+    <link rel="stylesheet" href="../styles/links.css">
 </head>
 
 <body>
@@ -18,7 +19,7 @@
     </div>
     <div class="container-fluid">
         {{ range $index, $value := .Threads }}
-        <div class="media jumbotron" style="padding: 10px;">
+        <a href="/posts?topic={{ $value.Topic }}&category={{ $.Category }}"><div class="media jumbotron" style="padding: 10px;">
             <div class="media-left media-middle">
                 <img class="media-object" style="width: 74px; height: 74px;" src="{{.IconURL}}" alt="image of poster">
             </div>
@@ -32,7 +33,7 @@
                 <br>
                 <small>Total Posts: <span class="badge">{{$value.TotalPosts}}</span></small>
             </div>
-        </div>
+        </div></a>
         {{ end }}
 
         <p></p>

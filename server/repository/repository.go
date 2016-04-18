@@ -72,8 +72,21 @@ func (r Repository) AddThread(thread *datastructures.Thread, categoryName string
 	update := bson.M{"$push": bson.M{"threads": bson.M{"topic": thread.Topic(), "description": thread.Description(), "moderator": sessions.UserName(request), "posts": thread.Posts(), "created": thread.Created(), "iconurl": thread.IconURL()}}}
 	err := collection.Update(query, update)
 	if err != nil {
-		fmt.Println("Adding thread")
 		log.Fatal(err)
+	}
+}
+
+// AddPost adds a post to thread in db
+func (r Repository) AddPost(post *datastructures.Post, topic string, categoryName string, request *http.Request) {
+	session, _ := mgo.Dial(r.ipAddress)
+	defer session.Close()
+	session.SetMode(mgo.Monotonic, true)
+	collection := session.DB("u-talk").C("forum")
+	query := bson.M{"name": categoryName, "threads.topic": topic}
+	update := bson.M{"$push": bson.M{"threads.$.posts": bson.M{"author": post.Author(), "content": post.Content(), "edited": post.WasEdited(), "created": post.Created()}}}
+	err := collection.Update(query, update)
+	if err != nil {
+		fmt.Println(fmt.Errorf("Error: %s", err))
 	}
 }
 
@@ -90,6 +103,41 @@ func (r Repository) Threads(categoryName string) []DbThread {
 		log.Fatal(err)
 	}
 	return category.Threads
+}
+
+// Posts returns the posts within a thread
+func (r Repository) Posts(categoryName string, topic string) ([]DbPost, string) {
+	threads := r.Threads(categoryName)
+	thread := filter(threads, func(t DbThread) bool {
+		return t.Topic == topic
+	})
+	fmt.Println(thread)
+	return thread[0].Posts, thread[0].Description
+}
+
+// Categories returns the categories
+func (r Repository) Categories() []DbCategory {
+	session, _ := mgo.Dial(r.ipAddress)
+	defer session.Close()
+	session.SetMode(mgo.Monotonic, true)
+
+	categories := []DbCategory{}
+	collection := session.DB("u-talk").C("forum")
+	err := collection.Find(nil).All(&categories)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return categories
+}
+
+func filter(vs []DbThread, f func(DbThread) bool) []DbThread {
+	var vsf = make([]DbThread, 0)
+	for _, v := range vs {
+		if f(v) {
+			vsf = append(vsf, v)
+		}
+	}
+	return vsf
 }
 
 // DbUser represents user object in database
@@ -130,3 +178,9 @@ type DbCategory struct {
 func (d DbThread) TotalPosts() int {
 	return len(d.Posts)
 }
+
+// CreatedFormatted properly formats datetime in UTC format
+// func (d DbPost) CreatedFormatted() {
+// 	created, err := time.Parse(time.RFC3339Nano, d.Created)
+// 	return create
+// }
