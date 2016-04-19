@@ -19,6 +19,9 @@
         <h4></h4>
     </div>
     <div class="container-fluid">
+        {{ if eq .TotalPosts 0}}
+        No Posts.
+        {{ end }}
         {{ range $index, $value := .Posts}}
         <small>Created On: {{ $value.Created }}</small>
         <div class="media jumbotron" style="padding: 10px;  margin-top:1px;">
@@ -30,174 +33,11 @@
                 <h5 class="media-heading">{{ $value.Content }}</h5>
             </div>
             <small>{{ $value.Author }}</small>
-            <br><a href="" data-toggle="modal" data-target="#editpost">Edit Post</a>
+            {{ if eq $.User $value.Author }}
+            <br><a href="" data-prevcontent="{{ $value.Content }}" data-toggle="modal" data-target="#editpost">Edit Post</a>
+            {{ end }}
         </div>
         {{ end }}
-        <small>Created On: April 10, 2016</small>
-        <div class="media jumbotron" style="padding: 10px;  margin-top:1px;">
-            <div class="media-left media-middle">
-                <img class="img-circle media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <h5 class="media-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</h5>
-            </div>
-            <small>xxx_kingSHIT</small>
-            <br><a href="/edit">Edit Post</a><a href="/edit">Edit Post</a> </div>
-        <small>Created On: April 10, 2016</small>
-        <div class="media jumbotron" style="padding: 10px;  margin-top:1px;">
-            <div class="media-left media-middle">
-                <img class="img-circle media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <h5 class="media-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</h5>
-            </div>
-            <small>xxx_kingSHIT</small>
-            <br><a href="/edit">Edit Post</a><a href="/edit">Edit Post</a> </div>
-        <small>Created On: April 10, 2016</small>
-        <div class="media jumbotron" style="padding: 10px;  margin-top:1px;">
-            <div class="media-left media-middle">
-                <img class="img-circle media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <h5 class="media-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</h5>
-            </div>
-            <small>xxx_kingSHIT</small>
-            <br><a href="/edit">Edit Post</a><a href="/edit">Edit Post</a> </div>
-        <small>Created On: April 10, 2016</small>
-        <div class="media jumbotron" style="padding: 10px;  margin-top:1px;">
-            <div class="media-left media-middle">
-                <img class="img-circle media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <h5 class="media-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</h5>
-            </div>
-            <small>xxx_kingSHIT</small>
-            <br><a href="" data-toggle="modal" data-target="#editpost">Edit Post</a> </div>
-
-        <small>Created On: April 10, 2016</small>
-        <div class="media jumbotron" style="padding: 10px;  margin-top:1px;">
-            <div class="media-left media-middle">
-                <img class="img-circle media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <h5 class="media-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</h5>
-            </div>
-            <small>xxx_kingSHIT</small>
-            <br><a href="" data-toggle="modal" data-target="#editpost">Edit Post</a> </div>
-
-        <small>Created On: April 10, 2016</small>
-        <div class="media jumbotron" style="padding: 10px;  margin-top:1px;">
-            <div class="media-left media-middle">
-                <img class="img-circle media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <h5 class="media-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</h5>
-            </div>
-            <small>xxx_kingSHIT</small>
-            <br><a href="" data-toggle="modal" data-target="#editpost">Edit Post</a> </div>
-
-        <small>Created On: April 10, 2016</small>
-        <div class="media jumbotron" style="padding: 10px;  margin-top:1px;">
-            <div class="media-left media-middle">
-                <img class="img-circle media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <h5 class="media-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</h5>
-            </div>
-            <small>xxx_kingSHIT</small>
-            <br><a href="" data-toggle="modal" data-target="#editpost">Edit Post</a> </div>
-
-        <small>Created On: April 10, 2016</small>
-        <div class="media jumbotron" style="padding: 10px;  margin-top:1px;">
-            <div class="media-left media-middle">
-                <img class="img-circle media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <h5 class="media-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</h5>
-            </div>
-            <small>xxx_kingSHIT</small>
-            <br><a href="" data-toggle="modal" data-target="#editpost">Edit Post</a> </div>
-
-        <small>Created On: April 10, 2016</small>
-        <div class="media jumbotron" style="padding: 10px;  margin-top:1px;">
-            <div class="media-left media-middle">
-                <img class="img-circle media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <h5 class="media-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</h5>
-            </div>
-            <small>xxx_kingSHIT</small>
-            <br><a href="" data-toggle="modal" data-target="#editpost">Edit Post</a> </div>
-
-        <small>Created On: April 10, 2016</small>
-        <div class="media jumbotron" style="padding: 10px;  margin-top:1px;">
-            <div class="media-left media-middle">
-                <img class="img-circle media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <h5 class="media-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</h5>
-            </div>
-            <small>xxx_kingSHIT</small>
-            <br><a href="" data-toggle="modal" data-target="#editpost">Edit Post</a> </div>
-
-        <small>Created On: April 10, 2016</small>
-        <div class="media jumbotron" style="padding: 10px;  margin-top:1px;">
-            <div class="media-left media-middle">
-                <img class="img-circle media-object" style="width: 74px; height: 74px;" src="../uploads/fiveyears.jpg" alt="image of poster">
-            </div>
-            <div class="media-body">
-                <br>
-                <h5 class="media-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</h5>
-            </div>
-            <small>xxx_kingSHIT</small>
-            <br><a href="" data-toggle="modal" data-target="#editpost">Edit Post</a> </div>
-
-
-
-        <p></p>
     </div>
     <!--END MAIN CONTENT-->
 
@@ -251,11 +91,11 @@
                 <div class="modal-body">
 
                     <div style="margin: 0 auto;" class="well">
-                        <form enctype="multipart/form-data" id="editform" method="POST" action="/edit" novalidate="novalidate">
+                        <form onsubmit="return submit()" enctype="multipart/form-data" id="editform" method="POST" action="/edit?thread={{ .Topic }}&category={{ .Category }}&author={{ .User }}" novalidate="novalidate">
                             <div class="form-group">
                                 <label class="control-label">Previous Post</label>
                                 <br>
-                                <small>
+                                <small id="prev">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
                                 in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
@@ -264,7 +104,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="post" class="control-label">Edit Post</label>
-                                <textarea style="resize: none;" type="text" class="form-control" id="post" name="post" placeholder="Make changes here."></textarea>
+                                <textarea style="resize: none;" type="text" class="form-control" id="edit" name="edit" placeholder="Make changes here."></textarea>
                             </div>
                             <div id="registerError" class="alert alert-error hide"></div>
                             <button type="submit" class="btn btn-success btn-block">Save Changes</button>
@@ -289,7 +129,19 @@
     <!--END FOOTER-->
     <script type="text/javascript" src="../scripts/jquery.min.js"></script>
     <script type="text/javascript" src="../scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../scripts/bootstrap-filestyle.min.js">
+    <script type="text/javascript" src="../scripts/bootstrap-filestyle.min.js"></script>
+
+    <script type="text/javascript">
+      $('#editpost').on('show.bs.modal', function(e) {
+        var prevcontent = e.relatedTarget.dataset.prevcontent;
+        $('#prev').text(prevcontent);
+      })
+
+      function submit() {
+        var action = $('#editform').attr('action');
+        console.log(action);
+        return false;
+      }
     </script>
 </body>
 

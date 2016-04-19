@@ -77,7 +77,7 @@ func (r Repository) AddThread(thread *datastructures.Thread, categoryName string
 }
 
 // AddPost adds a post to thread in db
-func (r Repository) AddPost(post *datastructures.Post, topic string, categoryName string, request *http.Request) {
+func (r Repository) AddPost(post *datastructures.Post, topic string, categoryName string) {
 	session, _ := mgo.Dial(r.ipAddress)
 	defer session.Close()
 	session.SetMode(mgo.Monotonic, true)
@@ -86,8 +86,18 @@ func (r Repository) AddPost(post *datastructures.Post, topic string, categoryNam
 	update := bson.M{"$push": bson.M{"threads.$.posts": bson.M{"author": post.Author(), "content": post.Content(), "edited": post.WasEdited(), "created": post.Created()}}}
 	err := collection.Update(query, update)
 	if err != nil {
-		fmt.Println(fmt.Errorf("Error: %s", err))
+		fmt.Println(err)
+
 	}
+}
+
+// EditPost edits a post
+func (r Repository) EditPost(author string, categoryName string, topic string, content string) {
+	// session, _ := mgo.Dial(r.ipAddress)
+	// defer session.Close()
+	// session.SetMode(mgo.Monotonic, true)
+	// collection := session.DB("u-talk").C("forum")
+	// query := bson.M{"name": categoryName, "threads.topic": topic, }
 }
 
 // Threads returns the threads in a category
@@ -111,7 +121,6 @@ func (r Repository) Posts(categoryName string, topic string) ([]DbPost, string) 
 	thread := filter(threads, func(t DbThread) bool {
 		return t.Topic == topic
 	})
-	fmt.Println(thread)
 	return thread[0].Posts, thread[0].Description
 }
 
@@ -178,9 +187,3 @@ type DbCategory struct {
 func (d DbThread) TotalPosts() int {
 	return len(d.Posts)
 }
-
-// CreatedFormatted properly formats datetime in UTC format
-// func (d DbPost) CreatedFormatted() {
-// 	created, err := time.Parse(time.RFC3339Nano, d.Created)
-// 	return create
-// }

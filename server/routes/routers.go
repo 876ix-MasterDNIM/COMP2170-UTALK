@@ -39,6 +39,8 @@ func RunServer() {
 	mux.HandleFunc("/threads", threads)
 	mux.HandleFunc("/posts", posts)
 	mux.HandleFunc("/categories", categories)
+	mux.HandleFunc("/edit", edit)
+	fmt.Println("Server serving on port 3000.")
 	http.ListenAndServe(":3000", mux)
 }
 
@@ -60,7 +62,6 @@ func register(response http.ResponseWriter, request *http.Request) {
 			return
 		}
 		defer file.Close()
-		fmt.Fprintf(response, "%v", handler.Header)
 		f, err := os.OpenFile("../../public/uploads/"+handler.Filename, os.O_WRONLY|os.O_CREATE, 0666)
 		if err != nil {
 			fmt.Println(err)
@@ -71,6 +72,7 @@ func register(response http.ResponseWriter, request *http.Request) {
 		user := new(datastructures.User)
 		user.User(strings.Join(request.Form["email"], ""), strings.Join(request.Form["password"], ""), strings.Join(request.Form["username"], ""), "../../public/uploads/"+handler.Filename)
 		db.StoreUser(user)
+		http.Redirect(response, request, "/index", 302)
 	}
 }
 
@@ -113,6 +115,9 @@ func categories(response http.ResponseWriter, request *http.Request) {
 		if templateErr != nil {
 			fmt.Fprintln(os.Stderr, err)
 		}
+	case post:
+		redirectTarget := "/categories"
+		http.Redirect(response, request, redirectTarget, 302)
 	}
 }
 
@@ -152,7 +157,6 @@ func threads(response http.ResponseWriter, request *http.Request) {
 			return
 		}
 		defer file.Close()
-		fmt.Fprintf(response, "%v", handler.Header)
 		f, err := os.OpenFile("../../public/uploads/"+handler.Filename, os.O_WRONLY|os.O_CREATE, 0666)
 		if err != nil {
 			fmt.Println(err)
@@ -166,6 +170,7 @@ func threads(response http.ResponseWriter, request *http.Request) {
 		thread := datastructures.Thread{}
 		thread.Thread(desc, sessions.UserName(request), "../uploads/"+handler.Filename, topic)
 		db.AddThread(&thread, categoryName, request)
+		http.Redirect(response, request, "/threads?category="+categoryName, 302)
 	}
 
 }
@@ -176,18 +181,22 @@ func posts(response http.ResponseWriter, request *http.Request) {
 		topic := request.FormValue("topic")
 		categoryName := request.FormValue("category")
 		posts, description := db.Posts(categoryName, topic)
-		fmt.Println(description)
 		data := struct {
 			Category    string
 			Topic       string
 			Description string
 			Posts       []repository.DbPost
+			User        string
+			TotalPosts  int
 		}{
 			categoryName,
 			topic,
 			description,
 			posts,
+			sessions.UserName(request),
+			len(posts),
 		}
+
 		tpl, err := template.ParseFiles("../../public/views/posts.html")
 		if err != nil {
 			log.Fatal(err)
@@ -200,10 +209,17 @@ func posts(response http.ResponseWriter, request *http.Request) {
 		categoryName := request.FormValue("category")
 		content := request.FormValue("content")
 		topic := request.FormValue("topic")
-		fmt.Println(topic)
-		fmt.Println(categoryName)
+		redirectTarget := "/posts?category=" + categoryName + "&topic=" + topic
 		post := datastructures.Post{}
 		post.Post(content, sessions.UserName(request))
-		db.AddPost(&post, topic, categoryName, request)
+		db.AddPost(&post, topic, categoryName)
+		http.Redirect(response, request, redirectTarget, 302)
 	}
+}
+
+func edit(response http.ResponseWriter, request *http.Request) {
+	// author := request.FormValue("author")
+	// categoryName := request.FormValue("category")
+	// content := request.FormValue("edit")
+	// topic := request.FormValue("topic")
 }

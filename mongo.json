@@ -8,7 +8,8 @@
         "posts": [{
             "author": "d_allen",
             "content": "My first post",
-            "edit": false
+            "edit": false,
+            "created": new Date()
         }],
         "created": new Date(),
         "iconurl": "../images/forum.png"
